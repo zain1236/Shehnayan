@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "item": "Bed set (Bed, Mattress, Wardrobe)",
+      "price": 200000
+    },
+    {
+      "item": "Refrigerator",
+      "price": 10000
+    },
+    {
+      "item": "Washing machine",
+      "price": 30000
+    },
+    {
+      "item": "Crockery",
+      "price": 50000
+    },
+    {
+      "item": "Grinder",
+      "price": 30000
+    },
+    {
+      "item": "Juicer",
+      "price": 40000
+    },
+    {
+      "item": "Iron",
+      "price": 5000
+    }
+  ]
+}
