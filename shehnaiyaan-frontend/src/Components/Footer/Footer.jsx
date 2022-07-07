@@ -71,7 +71,7 @@ const Footer = () => {
                 width="24"
                 height="24"
                 fill="currentColor"
-                class="bi bi-instagram"
+                className="bi bi-instagram"
                 viewBox="0 0 16 16"
               >
                 {" "}
@@ -95,7 +95,7 @@ const Footer = () => {
                 width="24"
                 height="24"
                 fill="currentColor"
-                class="bi bi-linkedin"
+                className="bi bi-linkedin"
                 viewBox="0 0 16 16"
               >
                 {" "}

@@ -27,33 +27,26 @@ const LoginComp = () => {
 
     // post request
 
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/v1/user/login`, data)
-      .then((data) => {
-        localStorage.setItem("token", data.data.token);
-        localStorage.setItem("userType", userType);
-        navigate("/home", { replace: true });
-        toast.success("👋 Welcome Back!", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
-      .catch((err) => {
-        toast.error("Please check your credentials!", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
+    toast.promise(
+      axios.post(`${process.env.REACT_APP_BASE_URL}/v1/user/login`, data),
+      {
+        pending: "Logging In...",
+        error: {
+          render({ data }) {
+            console.log(data);
+            return `${data.response.data.errors[0].msg}`;
+          },
+        },
+        success: {
+          render({ data }) {
+            localStorage.setItem("token", data.data.token);
+            localStorage.setItem("userType", userType);
+            navigate("/home", { replace: true });
+            return "Successfully logged in.";
+          },
+        },
+      }
+    );
   };
   return (
     <div className="  w-full grid grid-cols-1 md:grid-cols-2 bg-login bg-cover p-10 py-20">

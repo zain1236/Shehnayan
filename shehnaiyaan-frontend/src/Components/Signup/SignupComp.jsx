@@ -38,24 +38,27 @@ const SignupComp = () => {
 
     // post Request
 
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/v1/user/signup`, data)
-      .then((data) => {
-        localStorage.setItem("token", data.data.token);
-        localStorage.setItem("userType", userType);
-        navigate("/home", { replace: true });
-        toast.success("👋 Welcome to Shehnaiyan!", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
-      .catch((err) => console.log(err));
+    toast.promise(
+      axios.post(`${process.env.REACT_APP_BASE_URL}/v1/user/signup`, data),
+      {
+        pending: "Registering...",
+        success: {
+          render({ data }) {
+            localStorage.setItem("token", data.data.token);
+            localStorage.setItem("userType", userType);
+            navigate("/home", { replace: true });
+            return "Successfully Registered";
+          },
+        },
+        error: {
+          render({ data }) {
+            return `${data.response.data.error}`;
+          },
+        },
+      }
+    );
   };
+
   return (
     <div className="flex items-center justify-center p-10 bg-register bg-cover ">
       <form

@@ -16,7 +16,7 @@ import { ToastContainer } from "react-toastify";
 const App = () => {
   return (
     <div className="App w-screen min-h-screen flex flex-col  ">
-      <ToastContainer />
+      <ToastContainer pauseOnFocusLoss={false} />
       <Navbar />
       <Routes>
         <Route path="/home" element={<Landing />} />
